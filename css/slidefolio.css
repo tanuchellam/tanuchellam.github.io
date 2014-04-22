@@ -253,7 +253,7 @@ background:#4D4D4D;
     width: 100%;
 }
 .gallery .mix {
-    color: #eeeeee;
+    color: #FFFFFF;
     display: none;
     font-size: 30px;
     margin: 0 0 30px;
@@ -270,7 +270,7 @@ background:#4D4D4D;
 	
 }
 .gallery a.mix-cover, .gallery span.cover {
-    background-color: #eeeeee;
+    background-color: #FFFFFF;
     border-radius: 4px 4px 0 0;
     display: block;
     overflow: hidden;
@@ -292,7 +292,7 @@ background:#4D4D4D;
     top: -100%;
 }
 .gallery span.cover span {
-    color: #eeeeee;
+    color: #FFFFFF;
     height: 50px;
     left: 0;
     line-height: 50px;
@@ -327,7 +327,7 @@ img.placeholder {
     opacity: 1;
 }
 .overlay i, .overlay span.title {
-    color: #eeeeee;
+    color: #FFFFFF;
     font-size: 40px;
     position: relative;
     top: -60px;
