@@ -191,7 +191,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', en
 /* Services */
 
 .services {
-   background: none repeat scroll 0 0 #4D4D4D;
+   background: none repeat scroll 0 0 #f1f1f1;
   padding: 50px 0;
   color: #eeeeee;
   width: 100%;
@@ -241,7 +241,7 @@ label.valid {
 			margin-top: 2px;
 		}
 .portfolio {
-background:#f1f1f1;
+background:#4D4D4D;
 }		
 /* gallery */
 .gallery {
