@@ -191,9 +191,9 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', en
 /* Services */
 
 .services {
-   background: none repeat scroll 0 0 #f1f1f1;
+   background: none repeat scroll 0 0 #4D4D4D;
   padding: 50px 0;
-  color: #eeeeee;
+  color: #FFFFFF;
   width: 100%;
   border-bottom:1px solid #D1D1D1 !important;
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
@@ -241,7 +241,7 @@ label.valid {
 			margin-top: 2px;
 		}
 .portfolio {
-background:#4D4D4D;
+background:#f1f1f1;
 }		
 /* gallery */
 .gallery {
@@ -253,7 +253,7 @@ background:#4D4D4D;
     width: 100%;
 }
 .gallery .mix {
-    color: #FFFFFF;
+    color: #eeeeee;
     display: none;
     font-size: 30px;
     margin: 0 0 30px;
@@ -270,7 +270,7 @@ background:#4D4D4D;
 	
 }
 .gallery a.mix-cover, .gallery span.cover {
-    background-color: #FFFFFF;
+    background-color: #eeeeee;
     border-radius: 4px 4px 0 0;
     display: block;
     overflow: hidden;
@@ -292,7 +292,7 @@ background:#4D4D4D;
     top: -100%;
 }
 .gallery span.cover span {
-    color: #FFFFFF;
+    color: #eeeeee;
     height: 50px;
     left: 0;
     line-height: 50px;
@@ -327,7 +327,7 @@ img.placeholder {
     opacity: 1;
 }
 .overlay i, .overlay span.title {
-    color: #FFFFFF;
+    color: #eeeeee;
     font-size: 40px;
     position: relative;
     top: -60px;
