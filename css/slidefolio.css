@@ -191,9 +191,9 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', en
 /* Services */
 
 .services {
-   background: none repeat scroll 0 0 #4D4D4D;
+   background: none repeat scroll 0 0 #f1f1f1;
   padding: 50px 0;
-  color: #FFFFFF;
+  color: #eeeeee;
   width: 100%;
   border-bottom:1px solid #D1D1D1 !important;
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
@@ -241,7 +241,7 @@ label.valid {
 			margin-top: 2px;
 		}
 .portfolio {
-background:#f1f1f1;
+background:#4D4D4D;
 }		
 /* gallery */
 .gallery {
