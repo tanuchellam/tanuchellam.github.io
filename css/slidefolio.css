@@ -232,7 +232,6 @@ header h1 {
 }
 .cd-timeline-content p, .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
   font-size: 15px;
-  color: #eeeeee;
 }
 .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
   display: inline-block;
@@ -650,7 +649,6 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', en
 .services {
    background: none repeat scroll 0 0 #4D4D4D;
   padding: 50px 0;
-  color: #333333;
   width: 100%;
   border-bottom:1px solid #D1D1D1 !important;
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
@@ -658,6 +656,10 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', en
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
      -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
           box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+}
+
+.services ul {
+	color: #333333;
 }
 
 .service-item {
