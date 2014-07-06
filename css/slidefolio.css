@@ -64,6 +64,7 @@ header h1 {
   #cd-timeline {
     margin-top: 3em;
     margin-bottom: 3em;
+    color: #333333;
   }
   #cd-timeline::before {
     left: 50%;
