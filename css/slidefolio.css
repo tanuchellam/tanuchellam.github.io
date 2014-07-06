@@ -64,7 +64,6 @@ header h1 {
   #cd-timeline {
     margin-top: 3em;
     margin-bottom: 3em;
-    color: #333333;
   }
   #cd-timeline::before {
     left: 50%;
@@ -650,7 +649,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', en
 .services {
    background: none repeat scroll 0 0 #4D4D4D;
   padding: 50px 0;
-  color: #eeeeee;
+  color: #333333;
   width: 100%;
   border-bottom:1px solid #D1D1D1 !important;
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
