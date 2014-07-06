@@ -255,6 +255,8 @@ background:#f1f1f1;
 .gallery .mix {
     color: #FFFFFF;
     display: none;
+    .h3 font-size: 24px;
+    .p font-size: 13px;
     font-size: 13px;
     margin: 0 0 30px;
     opacity: 0;
