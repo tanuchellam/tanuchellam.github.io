@@ -334,7 +334,7 @@ img.placeholder {
     transition: all 0.3s ease 0s;
 }
 .overlay span.title {
-    font-size: 30px;
+    font-size: 13px;
 }
 .overlay:hover i, .overlay:hover span.title {
     top: 10px;
