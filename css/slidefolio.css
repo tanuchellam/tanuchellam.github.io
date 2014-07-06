@@ -37,6 +37,7 @@ header h1 {
   header {
     height: 300px;
     line-height: 300px;
+    color: #333333;
   }
   header h1 {
     font-size: 24px;
@@ -658,9 +659,6 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', en
           box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
 }
 
-.services ul {
-	color: #333333;
-}
 
 .service-item {
   margin-bottom: 15px;
