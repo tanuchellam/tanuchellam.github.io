@@ -99,7 +99,7 @@ header h1 {
 }
 
 .cd-timeline-img {
-  position: center;
+  position: absolute;
   top: 0;
   left: 0;
   width: 40px;
@@ -119,12 +119,18 @@ header h1 {
 }
 .cd-timeline-img.cd-picture {
   background: #75ce66;
+  padding-left: 5px;
+  padding-top: 5px;
 }
 .cd-timeline-img.cd-movie {
   background: #c03b44;
+  padding-left: 6px;
+  padding-top: 5px;
 }
 .cd-timeline-img.cd-location {
   background: #f0ca45;
+  padding-left: 2.5px;
+  padding-top: 5px;
 }
 @media only screen and (min-width: 1170px) {
   .cd-timeline-img {
