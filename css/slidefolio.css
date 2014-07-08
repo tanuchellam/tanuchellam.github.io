@@ -221,7 +221,7 @@ header h1 {
   clear: both;
 }
 .cd-timeline-content h2 {
-  color: black;
+  color: #303e49;
   font-size: 23px;
   text-decoration: underline;
 }
@@ -630,7 +630,7 @@ border-color:#cccccc;
 .btn-top:focus,
 .btn-top:active,
 .btn-top.active {
-  color: #333333;
+  color: black;
   background-color: #ebebeb;
   border-color: #adadad;
 }
