@@ -104,16 +104,16 @@ img { max-width: 100%; display: block; }
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
-  height: 92vh;
-  min-height: 640px;
+  height: calc(100vh - 68px);
+  min-height: 560px;
   overflow: hidden;
   background: oklch(9% 0.015 20);
 }
 .hero-photo {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center bottom;
+  object-fit: cover;
+  object-position: center 68%;
   display: block;
 }
 .hero-overlay {
