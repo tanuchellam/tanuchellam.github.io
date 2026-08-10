@@ -15,37 +15,78 @@
     navLinks.querySelectorAll('a').forEach(function (a) {
       a.addEventListener('click', function () { navLinks.classList.remove('open'); });
     });
-  }
-
-  // Career timeline reveal
-  var rows = document.querySelectorAll('.timeline-row');
-  if (rows.length && 'IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-        }
-      });
-    }, { threshold: 0.25, rootMargin: '0px 0px -10% 0px' });
-    rows.forEach(function (row) { observer.observe(row); });
-  } else {
-    rows.forEach(function (row) { row.classList.add('in-view'); });
-  }
-
-  // Earlier roles toggle
-  var earlierToggle = document.querySelector('.earlier-toggle');
-  var earlierSection = document.querySelector('.timeline-earlier');
-  if (earlierToggle && earlierSection) {
-    earlierToggle.addEventListener('click', function () {
-      var open = earlierSection.classList.toggle('open');
-      earlierToggle.textContent = open ? 'Hide earlier roles' : 'Show earlier roles (2005–2017)';
-      if (open) {
-        earlierSection.querySelectorAll('.timeline-row').forEach(function (row) {
-          if ('IntersectionObserver' in window) { observer.observe(row); } else { row.classList.add('in-view'); }
-        });
-      }
+    // If the menu was left open and the viewport is then resized past the
+    // mobile breakpoint (e.g. rotating a tablet), .nav-links reverts to the
+    // desktop row via CSS regardless of the class — but drop the stale
+    // class too, so narrowing back below the breakpoint afterwards starts
+    // from closed rather than snapping back open.
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 760) navLinks.classList.remove('open');
     });
   }
+
+  // Career: a sticky year-index down the left, scroll-synced to whichever
+  // entry has crossed 45% down the viewport — that entry (and its matching
+  // year) lights up, everything else recedes. Clicking a year jumps to its
+  // entry via the anchor link (scroll-margin-top on .career-entry keeps it
+  // clear of the sticky site nav).
+  (function () {
+    var entries = Array.prototype.slice.call(document.querySelectorAll('.career-entry'));
+    var yearLinks = Array.prototype.slice.call(document.querySelectorAll('.year-link'));
+    if (!entries.length || !yearLinks.length) return;
+
+    var ticking = false;
+
+    function visibleEntries() {
+      return entries.filter(function (entry) { return entry.offsetParent !== null; });
+    }
+
+    function updateActive() {
+      ticking = false;
+      var visible = visibleEntries();
+      if (!visible.length) return;
+
+      var triggerY = window.innerHeight * 0.45;
+      var active = visible[0];
+      visible.forEach(function (entry) {
+        if (entry.getBoundingClientRect().top <= triggerY) active = entry;
+      });
+
+      entries.forEach(function (entry) {
+        entry.classList.toggle('active-entry', entry === active);
+      });
+      var activeRole = active.dataset.role;
+      yearLinks.forEach(function (link) {
+        link.classList.toggle('active', link.dataset.role === activeRole);
+      });
+    }
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(updateActive);
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', updateActive);
+    setTimeout(updateActive, 50);
+    updateActive();
+
+    // Earlier roles toggle — expands both the nav's extra years and the
+    // matching entries together, then re-measures so the newly (un)hidden
+    // entries are correctly included/excluded from the active-year sync.
+    var earlierToggle = document.querySelector('.career-earlier-toggle');
+    var navEarlier = document.querySelector('.career-nav-earlier');
+    var entriesEarlier = document.querySelector('.career-entries-earlier');
+    if (earlierToggle && navEarlier && entriesEarlier) {
+      earlierToggle.addEventListener('click', function () {
+        var open = entriesEarlier.classList.toggle('open');
+        navEarlier.classList.toggle('open', open);
+        earlierToggle.textContent = open ? 'Hide earlier roles' : 'Earlier roles';
+        setTimeout(updateActive, 350);
+      });
+    }
+  })();
 
   // Portfolio slider + modal
   var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));

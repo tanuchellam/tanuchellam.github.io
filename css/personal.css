@@ -268,147 +268,137 @@ img { max-width: 100%; display: block; }
 .rec-link { font-size: 12px; text-decoration: none; color: var(--accent-bright); }
 
 /* ---------- Career ---------- */
-.career { background: #fff; padding: 100px 48px; }
-.career h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(26px, 3vw, 36px); color: var(--ink); margin: 0 0 16px; }
-.career > .container > p { font-size: 16px; line-height: 1.7; color: oklch(40% 0.01 20); max-width: 720px; margin: 0 0 56px; }
+/* A sticky "memory lane" year-index down the left, scroll-synced to the
+   entry list on the right — the active year lights up and grows as its
+   entry crosses the trigger line, inactive years recede. */
+.career { background: var(--dark-bg); padding: 110px 0; }
+.career-head { max-width: 1180px; margin: 0 auto 64px; padding: 0 48px; }
+.career-head h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(26px, 3vw, 36px); color: var(--dark-text); margin: 0 0 16px; }
+.career-head p { font-size: 16px; line-height: 1.7; color: oklch(65% 0.02 90); max-width: 640px; margin: 0; }
 
-.timeline { position: relative; padding-left: 96px; }
-.timeline-track {
-  position: absolute; left: 63px; top: 0; bottom: 0; width: 2px;
-  background: oklch(75% 0.012 90);
-}
-.timeline-row {
+.career-body {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 48px;
   display: grid;
-  grid-template-columns: 0.34fr 2.16fr;
-  gap: 36px;
-  padding: 36px 40px;
-  margin: 0 0 28px;
-  background: oklch(99% 0.002 90);
-  border-radius: 8px;
-  border: 1px solid oklch(85% 0.01 90);
-  box-shadow: 0 4px 20px oklch(16% 0.015 20 / 0.045);
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s cubic-bezier(.2,.7,.3,1), transform 0.7s cubic-bezier(.2,.7,.3,1);
+  grid-template-columns: 120px 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.career-nav {
+  position: sticky;
+  top: 110px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 22px;
+  border-left: 1px solid oklch(32% 0.015 20);
+}
+.year-link {
   position: relative;
-}
-.timeline-row.in-view { opacity: 1; transform: translateY(0); }
-.timeline-row:first-child { border-left: 4px solid var(--accent); }
-
-.timeline-dot {
-  position: absolute;
-  left: -49px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 12px; height: 12px;
-  border-radius: 50%;
-  background: oklch(20% 0.015 20);
-  border: 2px solid oklch(75% 0.012 90);
-  transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
-  z-index: 2;
-}
-.timeline-row.in-view .timeline-dot {
-  background: var(--accent-bright);
-  border-color: var(--accent-bright);
-  box-shadow: 0 0 0 5px oklch(65% 0.17 25 / 0.35);
-}
-.timeline-year {
-  position: absolute;
-  left: -96px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 44px;
-  text-align: right;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 17px;
   line-height: 1;
-  font-family: var(--serif);
-  font-weight: 600;
-  font-size: 18px;
-  letter-spacing: -0.01em;
-  color: oklch(65% 0.015 20);
-  transition: color 0.4s ease;
-}
-.timeline-row.in-view .timeline-year { color: var(--ink); }
-
-.timeline-media { position: relative; align-self: center; }
-.timeline-media .company-name {
-  font-family: var(--serif);
-  font-size: 22px;
-  font-weight: 600;
-  color: var(--ink);
-  display: block;
-  text-align: center;
-  margin-bottom: 8px;
+  color: oklch(42% 0.02 20);
   text-decoration: none;
-  transition: color 0.2s ease;
+  padding: 11px 0;
+  transition: color 0.35s ease, font-size 0.35s ease;
 }
-a.company-name { text-decoration: underline; }
-.timeline-media .company-name:hover { color: var(--accent); }
-.timeline-badge {
-  text-align: center;
-  margin-bottom: 8px;
+.year-link::before {
+  content: '';
+  position: absolute;
+  left: -22px;
+  top: 50%;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: oklch(30% 0.015 20);
+  border: 2px solid var(--dark-bg);
+  transform: translate(-50%, -50%);
+  transition: background 0.35s ease, box-shadow 0.35s ease;
+  z-index: 1;
 }
-.timeline-badge span {
+.year-link.active {
+  color: var(--dark-text);
+  font-size: 24px;
+}
+.year-link.active::before {
+  background: var(--accent-bright);
+  box-shadow: 0 0 0 5px oklch(65% 0.17 25 / 0.3);
+}
+.career-earlier-toggle {
+  align-self: flex-start;
+  margin: 4px 0 8px;
+  background: none;
+  border: none;
+  padding: 0;
   font-size: 11px;
-  letter-spacing: 0.04em;
-  padding: 3px 10px;
-  background: oklch(90% 0.012 90);
-  color: oklch(28% 0.015 20);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  display: inline-block;
+  color: var(--accent-bright-2);
+  cursor: pointer;
 }
-.timeline-badge span.current {
-  background: oklch(88% 0.17 25 / 0.4);
-  color: oklch(35% 0.13 25);
+.career-nav-earlier { display: none; flex-direction: column; }
+.career-nav-earlier.open { display: flex; }
+
+.career-entries { display: flex; flex-direction: column; gap: 72px; }
+.career-entries-earlier { display: none; flex-direction: column; gap: 72px; margin-top: 72px; }
+.career-entries-earlier.open { display: flex; }
+
+.career-entry {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 36px;
+  scroll-margin-top: 120px;
+  opacity: 0.42;
+  transition: opacity 0.5s ease;
 }
-.timeline-media-img-wrap {
+.career-entry.active-entry { opacity: 1; }
+
+.career-entry-media {
+  align-self: start;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 84%;
-  height: 185px;
-  margin: 0 auto;
-  background: oklch(97% 0.005 90);
-  border: 1px solid oklch(90% 0.01 90);
 }
-.timeline-media-img-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding: 14px;
-  display: block;
-}
-.timeline-location {
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  display: flex; align-items: center; justify-content: center; gap: 10px;
-  padding: 10px 12px;
-  background: linear-gradient(0deg, oklch(97% 0.01 90 / 0.92) 0%, oklch(97% 0.01 90 / 0) 100%);
-  font-size: 11.5px; color: oklch(20% 0.015 20); text-align: center;
-}
+.career-entry-media img { width: 100%; height: 100%; object-fit: contain; padding: 14px; display: block; }
+.career-entry-media a { display: block; width: 100%; height: 100%; }
 
-.timeline-body h3 { font-family: var(--serif); font-size: 22px; font-weight: 600; color: var(--ink); margin: 0 0 4px; }
-.timeline-dates { font-size: 12.5px; color: var(--muted); margin-bottom: 14px; }
-.timeline-body p { font-size: 15.5px; line-height: 1.7; color: var(--body); margin: 0 0 12px; }
-.timeline-meta { font-size: 13.5px; color: oklch(70% 0.015 90); margin-top: 6px; line-height: 1.8; }
-.timeline-meta .label { font-size: 11px; color: var(--accent); }
-
-.earlier-toggle {
-  width: 100%;
-  text-align: left;
-  background: none;
-  border: none;
-  border-bottom: 1px solid var(--border-2);
-  padding: 20px 0;
-  margin: 0 0 28px;
-  font-size: 13px;
-  color: var(--accent);
-  cursor: pointer;
+.career-entry-eyebrow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.career-entry-eyebrow a,
+.career-entry-eyebrow span:first-child {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--accent-bright-2);
+  text-decoration: none;
+}
+.career-entry-eyebrow a:hover { color: var(--dark-text); }
+.career-badge {
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  background: oklch(28% 0.015 20);
+  color: oklch(75% 0.02 90);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  display: inline-block;
 }
+.career-badge.current { background: oklch(88% 0.17 25 / 0.28); color: oklch(78% 0.13 25); }
 
-.timeline-earlier { display: none; }
-.timeline-earlier.open { display: block; }
+.career-entry-text h3 { font-family: var(--serif); font-size: 24px; font-weight: 600; color: var(--dark-text); margin: 0 0 4px; }
+.career-entry-subline { font-size: 12.5px; color: oklch(55% 0.02 20); margin-bottom: 16px; }
+.career-entry-text p { font-size: 15.5px; line-height: 1.7; color: oklch(80% 0.01 90); margin: 0 0 14px; }
+.career-entry-facts { font-size: 13.5px; color: oklch(60% 0.015 90); margin-top: 8px; line-height: 1.8; }
+.career-entry-facts .label { font-size: 11px; color: var(--accent-bright-2); }
 
 /* ---------- Portfolio ---------- */
 .portfolio { background: var(--dark-bg); padding: 100px 0 0; }
@@ -543,19 +533,43 @@ a.chip:hover { border-color: var(--accent); color: var(--accent); }
 .faq-rec .attribution a { color: inherit; text-decoration: underline; }
 
 /* ---------- Responsive ---------- */
-@media (max-width: 900px) {
-  .about { grid-template-columns: 1fr; }
-  .about-media { position: static; }
-  .about-media img { height: auto; aspect-ratio: 4/3; }
-  .recs-grid { grid-template-columns: 1fr; }
-  .timeline-row { grid-template-columns: 1fr; }
-  .timeline { padding-left: 60px; }
-  .timeline-year { left: -60px; width: 32px; font-size: 15px; }
-  .timeline-dot { left: -33px; }
-  .timeline-track { left: 27px; }
+/* Three tiers, chosen per-component rather than one global cutoff:
+   - 1024px "tablet": About / Recs / Portfolio ease into a tighter multi-
+     column layout — they still have the width to stay side-by-side.
+   - 880px: the career section's sticky vertical year-rail needs a column
+     of its own; below this width it becomes a sticky horizontal strip
+     above the entries instead, on its own breakpoint.
+   - 760px "mobile": nav, hero and everything else fully stacks. */
+
+@media (max-width: 1024px) {
+  .container, .container-wide { padding: 0 40px; }
+
+  .about { grid-template-columns: 1fr 1fr; gap: 40px; padding: 80px 40px; }
+  .about-media { top: 88px; }
+  .about-media img { height: 440px; }
+
+  .recs { padding: 80px 40px; }
+  .recs-grid { gap: 18px; }
+  .rec-card { padding: 26px; gap: 14px; }
+
+  .career-head, .career-body { padding-left: 40px; padding-right: 40px; }
+
+  .slider-info-text { max-width: 480px; }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 880px) {
+  /* Stays a vertical rail all the way down — just narrower, with tighter
+     spacing, rather than switching orientation. */
+  .career-body { grid-template-columns: 92px 1fr; gap: 28px; }
+  .career-nav { top: 88px; }
+  .year-link { font-size: 15px; padding: 9px 0; }
+  .year-link.active { font-size: 19px; }
+
+  .career-entry { grid-template-columns: 108px 1fr; gap: 24px; }
+  .career-entry-media { align-self: center; }
+}
+
+@media (max-width: 760px) {
   .nav { padding: 0 20px; }
   .nav-links {
     position: fixed; top: 68px; left: 0; right: 0;
@@ -566,24 +580,80 @@ a.chip:hover { border-color: var(--accent); color: var(--accent); }
     border-bottom: 1px solid var(--border-2);
     display: none;
     padding: 8px 20px 16px;
+    max-height: calc(100vh - 68px);
+    overflow-y: auto;
   }
   .nav-links.open { display: flex; }
-  .nav-link { padding: 12px 0; width: 100%; }
-  .nav-cta { margin-top: 8px; }
-  .nav-toggle { display: block; }
+  .nav-link {
+    padding: 0;
+    width: 100%;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+  }
+  .nav-cta {
+    margin-top: 8px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    box-sizing: border-box;
+  }
+  .nav-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0;
+    margin-right: -10px;
+  }
 
   .hero-content { left: 20px; right: 20px; bottom: 32px; max-width: none; }
-  .about, .career, .contact, .portfolio h2, .travels { padding-left: 20px; padding-right: 20px; }
-  .about { padding-top: 60px; padding-bottom: 60px; }
+  .about, .contact, .portfolio h2, .travels { padding-left: 20px; padding-right: 20px; }
+  .about {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  .about-media { position: static; }
+  .about-media img { height: auto; aspect-ratio: 4/3; }
   .container, .container-wide { padding: 0 20px; }
   .recs { padding: 60px 20px; }
-  .career { padding: 60px 20px; }
+  .recs-grid { grid-template-columns: 1fr; }
+  .career-head, .career-body { padding-left: 20px; padding-right: 20px; }
   .about-tags { flex-wrap: wrap; }
   .about-tags span { flex: 1 1 40%; }
+
+  .career-body { grid-template-columns: 84px 1fr; gap: 24px; }
+  .career-nav { top: 68px; }
+  .year-link { font-size: 14px; padding: 7px 0; }
+  .year-link.active { font-size: 16px; }
+  .career-entry { grid-template-columns: 1fr; gap: 16px; }
+  .career-entry-media { width: 84px; }
+
   .slider-info { flex-direction: column; align-items: flex-start; gap: 16px; }
   .slider-controls { align-items: flex-start; width: 100%; flex-direction: row; justify-content: space-between; }
+  .slider-arrows button { width: 44px; height: 44px; }
+  .slider-dots { gap: 16px; padding: 24px 20px 70px; }
+  .slider-dots button { position: relative; }
+  /* Visual dot stays small; the tap target around it doesn't. */
+  .slider-dots button::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 32px; height: 32px;
+    transform: translate(-50%, -50%);
+  }
+
   .contact { padding: 70px 20px 32px; }
   .faq-page { padding: 60px 20px 80px; }
-  .modal-content { padding: 32px 24px 32px; }
-  .modal-images { padding: 40px 24px 0; }
+
+  .modal-overlay { padding: 0; }
+  .modal-box { max-height: 100vh; border-radius: 0; }
+  .modal-close { width: 44px; height: 44px; top: 12px; right: 12px; }
+  .modal-content { padding: 28px 20px 32px; }
+  .modal-images { padding: 36px 20px 0; }
+  .modal-images img { max-height: 220px; }
 }
